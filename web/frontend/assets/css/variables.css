@@ -1,0 +1,88 @@
+/* ═══════════════════════════════════════════════════════
+   VARIABLES.CSS — Tokens de diseño Laguitos
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ────── BASE ────── */
+  --bg-base:        #fafafd;
+  --bg-elevated:    #ffffff;
+  --bg-recessed:    #f5f3f9;
+
+  /* ────── TINTA ────── */
+  --ink-900:        #1a1525;
+  --ink-700:        #3d3452;
+  --ink-500:        #6b5f85;
+  --ink-300:        #a89fbd;
+
+  /* ────── MORADOS ────── */
+  --violet-50:      #faf7ff;
+  --violet-100:     #f0e9fc;
+  --violet-200:     #e0d2f8;
+  --violet-300:     #c9b2f0;
+  --violet-400:     #ab8be2;
+  --violet-500:     #8b6dd1;
+  --violet-600:     #6f54b3;
+  --violet-700:     #584391;
+  --violet-900:     #2f2352;
+
+  /* ────── ACENTOS ────── */
+  --rose-soft:      #f5d5e0;
+  --rose:           #e8a5bf;
+  --cream:          #fdf6e9;
+  --sage:           #c5d5c0;
+  --gold:           #e8c976;
+
+  /* ────── GLASS ────── */
+  --glass-bg:             rgba(255, 255, 255, 0.85);
+  --glass-bg-supported:   rgba(255, 255, 255, 0.55);
+  --glass-bg-hover:       rgba(255, 255, 255, 0.70);
+  --glass-border:         rgba(255, 255, 255, 0.80);
+  --glass-shadow:
+    0 8px 32px -8px rgba(139, 109, 209, 0.12),
+    0 2px 8px -2px rgba(88, 67, 145, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  /* ────── GLOW / ORBES ────── */
+  --glow-violet:    radial-gradient(circle at 30% 40%, rgba(171, 139, 226, 0.35), transparent 60%);
+  --glow-rose:      radial-gradient(circle at 70% 60%, rgba(232, 165, 191, 0.25), transparent 60%);
+  --glow-gold:      radial-gradient(circle at 50% 90%, rgba(232, 201, 118, 0.18), transparent 60%);
+
+  /* ────── TIPOGRAFÍA ────── */
+  --serif:  "Fraunces", "DM Serif Display", Georgia, serif;
+  --sans:   "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --script: "Caveat", cursive;
+  --mono:   "JetBrains Mono", "Fira Code", monospace;
+
+  /* ────── SOMBRAS ────── */
+  --shadow-sm:   0 1px 3px rgba(88, 67, 145, 0.06), 0 1px 2px rgba(88, 67, 145, 0.04);
+  --shadow-md:   0 4px 12px -2px rgba(88, 67, 145, 0.1), 0 2px 4px -1px rgba(88, 67, 145, 0.06);
+  --shadow-lg:   0 12px 32px -6px rgba(88, 67, 145, 0.15), 0 4px 12px -2px rgba(88, 67, 145, 0.08);
+  --shadow-xl:   0 24px 48px -12px rgba(88, 67, 145, 0.2), 0 8px 24px -4px rgba(88, 67, 145, 0.1);
+  --shadow-glow: 0 0 40px rgba(171, 139, 226, 0.3);
+
+  /* ────── RADIUS ────── */
+  --r-xs:   6px;
+  --r-sm:   10px;
+  --r-md:   16px;
+  --r-lg:   24px;
+  --r-xl:   32px;
+  --r-full: 999px;
+
+  /* ────── TRANSITIONS ────── */
+  --ease-out-back:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo:  cubic-bezier(0.87, 0, 0.13, 1);
+
+  /* ────── SPACING ────── */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* ────── LAYOUT ────── */
+  --content-max:   680px;
+  --header-height: 64px;
+}

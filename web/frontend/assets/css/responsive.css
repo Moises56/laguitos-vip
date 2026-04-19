@@ -1,0 +1,182 @@
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE.CSS — Mobile-first media queries
+   ═══════════════════════════════════════════════════════ */
+
+/* ────── Base móvil (< 480px) ────── */
+
+.header-tagline {
+  display: none;
+}
+
+.hero {
+  padding: var(--space-2xl) 0 var(--space-xl);
+}
+
+.hero-sub br {
+  display: none;
+}
+
+.card-download {
+  padding: var(--space-lg) var(--space-md);
+}
+
+.progress-card {
+  padding: var(--space-md);
+}
+
+/* Mostrar acciones siempre en mobile (no hay hover) */
+.history-item-actions {
+  opacity: 1;
+}
+
+.history-item {
+  padding: var(--space-sm) var(--space-md);
+}
+
+/* ────── >= 480px — Teléfonos grandes ────── */
+@media (min-width: 480px) {
+  .header-tagline {
+    display: block;
+  }
+
+  .card-download {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+/* ────── >= 640px — Tablets small ────── */
+@media (min-width: 640px) {
+  .hero-sub br {
+    display: inline;
+  }
+
+  .history-item {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .history-item-actions {
+    opacity: 0;
+  }
+
+  .history-item:hover .history-item-actions {
+    opacity: 1;
+  }
+
+  .progress-card {
+    padding: var(--space-lg) var(--space-xl);
+  }
+}
+
+/* ────── >= 768px — Tablets ────── */
+@media (min-width: 768px) {
+  :root {
+    --header-height: 72px;
+  }
+
+  .hero {
+    padding: var(--space-3xl) 0 var(--space-2xl);
+  }
+
+  .card-download {
+    padding: var(--space-xl) var(--space-xl);
+  }
+
+  .modal {
+    padding: var(--space-xl) var(--space-2xl) var(--space-lg);
+  }
+
+  .orb {
+    width: 600px;
+    height: 600px;
+  }
+
+  .orb--lavender {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+/* ────── >= 1024px — Desktop ────── */
+@media (min-width: 1024px) {
+  .app {
+    max-width: 720px;
+  }
+
+  .hero-title {
+    font-size: 52px;
+  }
+
+  .orb {
+    filter: blur(100px);
+  }
+}
+
+/* ────── >= 1440px — Desktop grande ────── */
+@media (min-width: 1440px) {
+  .app {
+    max-width: 760px;
+  }
+
+  .orb {
+    width: 700px;
+    height: 700px;
+  }
+}
+
+/* ────── Accesibilidad: reducir movimiento ────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .orb {
+    opacity: 0.3;
+  }
+
+  .progress-fill::after {
+    animation: none;
+  }
+}
+
+/* ────── Alto contraste ────── */
+@media (prefers-contrast: high) {
+  .glass,
+  .glass-elevated,
+  .history-item,
+  .card-download {
+    background: var(--bg-elevated) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-color: var(--ink-300) !important;
+  }
+
+  .modal-backdrop {
+    background: rgba(26, 21, 37, 0.7) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* ────── Landscape móvil ────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    padding: var(--space-lg) 0 var(--space-md);
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .loader-stage {
+    width: 140px;
+    height: 140px;
+  }
+
+  .loader-text {
+    font-size: 22px;
+  }
+}

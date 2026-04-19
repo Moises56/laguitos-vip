@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════════════
+   LOADER.CSS — Loader cinemático (gota + ripples + texto)
+   ═══════════════════════════════════════════════════════ */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: var(--bg-base);
+}
+
+.loader-stage {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-drop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+}
+
+.loader-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--violet-400);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-ripple--1 { border-color: var(--violet-400); }
+.loader-ripple--2 { border-color: var(--violet-300); }
+.loader-ripple--3 { border-color: var(--violet-200); }
+
+.loader-text {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: var(--space-lg);
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 900;
+  white-space: nowrap;
+  color: var(--ink-900);
+  letter-spacing: -0.03em;
+}
+
+.loader-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.loader-italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--violet-500);
+}
+
+/* Reducir movimiento: loader es estático, aparece y se va */
+@media (prefers-reduced-motion: reduce) {
+  .loader-word {
+    opacity: 1;
+    transform: none;
+  }
+
+  .loader-ripple {
+    display: none;
+  }
+}

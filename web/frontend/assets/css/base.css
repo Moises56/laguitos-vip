@@ -1,0 +1,178 @@
+/* ═══════════════════════════════════════════════════════
+   BASE.CSS — Reset, body, bg-mesh, orbes, tipografía
+   ═══════════════════════════════════════════════════════ */
+
+/* ────── Reset ────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-700);
+  background: var(--bg-base);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--violet-400);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--violet-200);
+  color: var(--ink-900);
+}
+
+/* ────── Tipografía global ────── */
+h1, h2, h3 {
+  font-family: var(--serif);
+  color: var(--ink-900);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ────── Background mesh + orbes ────── */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at top left, var(--violet-100) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(245, 213, 224, 0.35) 0%, transparent 40%),
+    linear-gradient(180deg, var(--bg-base) 0%, var(--bg-recessed) 100%);
+}
+
+.orb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orb--violet {
+  top: -10%;
+  left: -5%;
+  background: radial-gradient(circle, #ab8be2, transparent 70%);
+  opacity: 0.65;
+}
+
+.orb--rose {
+  top: 40%;
+  right: -10%;
+  background: radial-gradient(circle, #e8a5bf, transparent 70%);
+  opacity: 0.30;
+}
+
+.orb--gold {
+  bottom: -15%;
+  left: 30%;
+  background: radial-gradient(circle, #e8c976, transparent 70%);
+  opacity: 0.35;
+}
+
+.orb--lavender {
+  top: 60%;
+  left: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #c9b2f0, transparent 70%);
+}
+
+.bg-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ────── App wrapper ────── */
+.app {
+  position: relative;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  padding-top: calc(var(--header-height) + var(--space-lg));
+}
+
+/* ────── Auth gate ────── */
+/* Mientras no haya sesión, el contenido principal se oculta a la vista
+   (por opacidad+visibility) y se bloquea interacción. El modal de login
+   queda como única UI visible. Se remueve con classList.remove() al
+   completar el login. */
+body.is-auth-gated .main-content {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Opcional: reforzar el backdrop del login en auth-gated para que
+   el blur se sienta más definitivo y no se vea nada detrás. */
+body.is-auth-gated .modal-backdrop {
+  background: rgba(26, 21, 37, 0.35);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  body.is-auth-gated .modal-backdrop {
+    background: rgba(26, 21, 37, 0.2);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+  }
+}
+
+/* ────── Utilidades mínimas ────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

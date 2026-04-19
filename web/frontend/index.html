@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#8b6dd1" />
+  <title>Laguitos — para Estefany</title>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600;700;800&family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/loader.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js" defer></script>
+
+  <!-- App JS -->
+  <script src="assets/js/api.js" defer></script>
+  <script src="assets/js/auth.js" defer></script>
+  <script src="assets/js/animations.js" defer></script>
+  <script src="assets/js/downloads.js" defer></script>
+  <script src="assets/js/history.js" defer></script>
+  <script src="assets/js/sharing.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body class="is-auth-gated">
+
+  <!-- ═══════ LOADER CINEMÁTICO ═══════ -->
+  <div class="loader" id="laguitos-loader" aria-hidden="true">
+    <div class="loader-stage">
+      <svg class="loader-drop" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <radialGradient id="loader-drop-grad" cx="50%" cy="40%">
+            <stop offset="0%" stop-color="#ab8be2" />
+            <stop offset="100%" stop-color="#6f54b3" />
+          </radialGradient>
+        </defs>
+        <path d="M 50 20 Q 30 45 30 62 A 20 20 0 0 0 70 62 Q 70 45 50 20 Z"
+              fill="url(#loader-drop-grad)" />
+      </svg>
+      <span class="loader-ripple loader-ripple--1" aria-hidden="true"></span>
+      <span class="loader-ripple loader-ripple--2" aria-hidden="true"></span>
+      <span class="loader-ripple loader-ripple--3" aria-hidden="true"></span>
+      <div class="loader-text" aria-label="Laguitos">
+        <span class="loader-word">Lagu</span><span class="loader-word loader-italic">itos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ FONDO MESH + ORBES ═══════ -->
+  <div class="bg-mesh" aria-hidden="true">
+    <div class="orb orb--violet"></div>
+    <div class="orb orb--rose"></div>
+    <div class="orb orb--gold"></div>
+    <div class="orb orb--lavender"></div>
+    <div class="bg-noise"></div>
+  </div>
+
+  <!-- ═══════ APP WRAPPER ═══════ -->
+  <div class="app main-content" id="app">
+
+    <!-- ─── HEADER ─── -->
+    <header class="header glass">
+      <div class="header-inner">
+        <div class="header-brand">
+          <svg class="header-logo" viewBox="0 0 100 100" aria-hidden="true">
+            <defs>
+              <radialGradient id="header-drop-grad" cx="50%" cy="40%">
+                <stop offset="0%" stop-color="#ab8be2" />
+                <stop offset="100%" stop-color="#6f54b3" />
+              </radialGradient>
+            </defs>
+            <path d="M 50 20 Q 30 45 30 62 A 20 20 0 0 0 70 62 Q 70 45 50 20 Z"
+                  fill="url(#header-drop-grad)" />
+          </svg>
+          <div class="header-titles">
+            <span class="header-name">Laguitos</span>
+            <span class="header-tagline">para Estefany <span class="sparkle">✦</span></span>
+          </div>
+        </div>
+        <nav class="header-nav" id="header-nav" style="display: none;">
+          <span class="header-user" id="header-user"></span>
+          <button class="btn btn--ghost btn--sm" data-action="logout">Salir</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+      <span class="hero-eyebrow">— Un diario digital de momentos —</span>
+      <h1 class="hero-title">
+        Pequeñas lagunas<br />de memoria.
+      </h1>
+      <p class="hero-sub">
+        Copia el enlace de algo que te gustó y<br />
+        guárdalo aquí, para volver a verlo cuando quieras.
+      </p>
+    </section>
+
+    <!-- ─── CARD DE DESCARGA ─── -->
+    <section class="section-download" id="section-download">
+      <div class="card-download glass">
+        <div class="card-download-inner">
+          <!-- Enlace -->
+          <div class="field-group">
+            <label class="field-label" for="input-url">
+              <span class="field-number">i.</span> El enlace
+            </label>
+            <div class="field-row">
+              <input
+                type="url"
+                id="input-url"
+                class="input"
+                placeholder="https://..."
+                autocomplete="off"
+                spellcheck="false"
+                data-input="url"
+              />
+              <button class="btn btn--outline btn--sm" data-action="paste" title="Pegar del portapapeles">
+                Pegar
+              </button>
+            </div>
+          </div>
+
+          <!-- Modo -->
+          <div class="field-group">
+            <label class="field-label">
+              <span class="field-number">ii.</span> ¿Qué guardamos?
+            </label>
+            <div class="format-options" data-input="mode">
+              <button class="format-option format-option--active" data-value="video" aria-pressed="true">
+                <span class="format-icon">▷</span>
+                <span class="format-label">Video</span>
+              </button>
+              <button class="format-option" data-value="audio" aria-pressed="false">
+                <span class="format-icon">♪</span>
+                <span class="format-label">Audio</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Calidad -->
+          <div class="field-group">
+            <label class="field-label" for="select-quality">Calidad</label>
+            <select id="select-quality" class="select" data-input="quality">
+              <option value="mejor" selected>La mejor</option>
+              <option value="1080">1080p</option>
+              <option value="720">720p</option>
+              <option value="480">480p</option>
+              <option value="360">360p</option>
+            </select>
+          </div>
+
+          <!-- Submit -->
+          <button class="btn btn--primary btn--lg btn--full" data-action="submit" disabled>
+            <span class="btn-label">Guardar en mi laguito</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+        <!-- Borde gradiente decorativo -->
+        <div class="card-download-border" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ─── PANEL DE PROGRESO ─── -->
+    <section class="progress-panel" id="progress-panel">
+      <div class="progress-card glass">
+        <div class="progress-header">
+          <span class="progress-title" id="progress-title">Preparando descarga…</span>
+          <button class="btn btn--ghost btn--sm" data-action="cancel-download">Cancelar</button>
+        </div>
+        <div class="progress-meta" id="progress-meta"></div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-footer">
+          <span class="progress-percent" id="progress-percent">0%</span>
+          <span class="progress-speed" id="progress-speed"></span>
+          <span class="progress-eta" id="progress-eta"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ESTADO DE ÉXITO ─── -->
+    <section class="status-success" id="status-success" style="display: none;">
+      <div class="success-card glass">
+        <button
+          type="button"
+          class="success-close"
+          data-action="close-success"
+          aria-label="Cerrar mensaje">×</button>
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h3 class="success-title" id="success-title">¡Guardado!</h3>
+        <p class="success-meta" id="success-meta"></p>
+        <a class="btn btn--primary btn--lg download-link" id="download-link" href="#" download>
+          Descargar archivo
+        </a>
+      </div>
+    </section>
+
+    <!-- ─── HISTORIAL ─── -->
+    <section class="section-history" id="section-history">
+      <div class="history-header">
+        <h2 class="history-heading">
+          <span class="history-icon" aria-hidden="true">📖</span> Historial
+        </h2>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs" role="tablist">
+        <button
+          class="tab tab--active"
+          role="tab"
+          aria-selected="true"
+          data-tab="own"
+        >
+          Mis laguitos <span class="tab-count" id="tab-count-own"></span>
+        </button>
+        <button
+          class="tab"
+          role="tab"
+          aria-selected="false"
+          data-tab="shared"
+        >
+          Compartidos conmigo <span class="tab-count" id="tab-count-shared"></span>
+        </button>
+        <div class="tab-indicator" aria-hidden="true"></div>
+      </div>
+
+      <!-- Lista de items -->
+      <div class="history-list" id="history-list" role="tabpanel">
+        <!-- Rendered dinámicamente por history.js -->
+      </div>
+
+      <!-- Estado vacío -->
+      <div class="history-empty" id="history-empty" style="display: none;">
+        <span class="history-empty-icon" aria-hidden="true">🌿</span>
+        <p class="history-empty-text">Aún no hay laguitos aquí.</p>
+      </div>
+
+      <!-- Paginación -->
+      <div class="history-pagination" id="history-pagination" style="display: none;">
+        <button class="btn btn--ghost btn--sm" data-action="prev-page" disabled>← Anterior</button>
+        <span class="pagination-info" id="pagination-info"></span>
+        <button class="btn btn--ghost btn--sm" data-action="next-page">Siguiente →</button>
+      </div>
+    </section>
+
+  </div><!-- /.app -->
+
+  <!-- ═══════ LOGIN MODAL ═══════ -->
+  <div class="modal-backdrop" id="modal-login" style="display: none;">
+    <div class="modal glass-elevated" role="dialog" aria-labelledby="login-title" aria-modal="true">
+      <h2 class="modal-title" id="login-title">Bienvenida al laguito</h2>
+      <div class="modal-divider" aria-hidden="true"></div>
+      <p class="modal-sub">Solo quienes tienen la llave pueden entrar.</p>
+
+      <form class="login-form" data-form="login" novalidate>
+        <div class="field-group">
+          <label class="field-label" for="login-email">Correo</label>
+          <input
+            type="email"
+            id="login-email"
+            class="input"
+            autocomplete="email"
+            required
+            data-input="login-email"
+          />
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="login-password">Contraseña</label>
+          <input
+            type="password"
+            id="login-password"
+            class="input"
+            autocomplete="current-password"
+            required
+            data-input="login-password"
+          />
+        </div>
+        <div class="login-error" id="login-error" role="alert"></div>
+        <button type="submit" class="btn btn--primary btn--lg btn--full">
+          Entrar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════ SHARE MODAL ═══════ -->
+  <div class="modal-backdrop" id="modal-share" style="display: none;">
+    <div class="modal glass-elevated" role="dialog" aria-labelledby="share-title" aria-modal="true">
+      <h2 class="modal-title" id="share-title">Compartir con</h2>
+      <div class="modal-divider" aria-hidden="true"></div>
+
+      <div class="share-users" id="share-users">
+        <!-- Rendered dinámicamente por sharing.js -->
+      </div>
+
+      <div class="share-current" id="share-current">
+        <!-- Lista de shares actuales -->
+      </div>
+
+      <button class="btn btn--ghost btn--full" data-action="close-share">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- ═══════ CURSOR CUSTOM (desktop) ═══════ -->
+  <!-- Inyectado por animations.js solo si hover:hover -->
+
+</body>
+</html>
