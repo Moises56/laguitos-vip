@@ -54,7 +54,7 @@ FROM python:3.12-slim AS runtime
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONPATH=/app \
+    PYTHONPATH=/app:/app/web/backend \
     PATH="/opt/venv/bin:$PATH" \
     DATA_DIR=/app/data
 
