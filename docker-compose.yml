@@ -1,0 +1,50 @@
+# ═══════════════════════════════════════════════════════════════
+#  Laguitos Web — docker-compose.yml (DEV local)
+# ═══════════════════════════════════════════════════════════════
+#  Un único service: `backend` sirve API + frontend estático (via
+#  StaticFiles mount en main.py cuando DEBUG=true).
+#
+#  Para producción usar docker-compose.prod.yml (Fase 3 · Sub-3),
+#  que añade nginx + certbot + PostgreSQL.
+#
+#  Uso:
+#    1. .\scripts\docker\init.ps1     (primera vez)
+#    2. docker compose up -d --build
+#    3. curl http://localhost:8000/api/health
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: web/backend/Dockerfile
+    image: laguitos-backend:dev
+    container_name: laguitos-backend
+
+    ports:
+      - "8000:8000"
+
+    # Vars del .env de la raíz (generado por init.ps1 desde
+    # docker/.env.example). Las de abajo sobrescriben lo que haga
+    # falta para el entorno container.
+    env_file:
+      - .env
+    environment:
+      - DEBUG=true
+      - DATA_DIR=/app/data
+      - DATABASE_URL=sqlite+aiosqlite:////app/data/laguitos.db
+
+    # Bind mounts (visibles desde el host para debug e inspección)
+    volumes:
+      - ./data:/app/data                     # SQLite + descargas
+      - ./logs:/app/logs                     # logs del downloader
+      - ./cookies.txt:/app/cookies.txt:ro    # cookies yt-dlp (opcional)
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s

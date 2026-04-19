@@ -1,0 +1,107 @@
+# ═══════════════════════════════════════════════════════════════
+#  .dockerignore — contenido excluido del build context
+# ═══════════════════════════════════════════════════════════════
+#  Objetivo: mantener el build context pequeño (<50 MB idealmente)
+#  y evitar que secretos/artefactos locales entren a la imagen.
+# ═══════════════════════════════════════════════════════════════
+
+# ─── Control de versiones ────────────────────────────────────
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# ─── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ─── Entornos virtuales ──────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ─── Secrets y datos sensibles (CRÍTICO) ─────────────────────
+.env
+.env.local
+.env.*.local
+cookies.txt
+
+# ─── Datos runtime (van como volúmenes, no al build) ─────────
+data/
+downloads/
+logs/
+historial.json
+*.db
+*.db-shm
+*.db-wal
+
+# ─── Artefactos de la desktop app (no necesarios en el web) ──
+build/
+dist/
+ffmpeg_bundle/
+DescargadorVideos*.spec
+DescargadorVideos*/
+main.py
+main_web.py
+iniciar.bat
+build.ps1
+build_exe.py
+convert_logo.py
+prepare_ffmpeg.py
+test_executable.py
+test_proyecto.py
+test-grupo2.js
+
+# ─── Node / frontend tooling ─────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.playwright-mcp/
+
+# ─── Editores / IDEs ─────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── Screenshots y assets de desarrollo ──────────────────────
+screenshot-*.png
+state-*.png
+grupo4-*.png
+cursor-over-btn.png
+post-sprint-final.png
+template.png
+
+# ─── Prompts internos y notas ────────────────────────────────
+prompts/
+prompt*.md
+res*.md
+resumen.md
+
+# ─── Docs (reducir build context; la imagen no las necesita) ─
+*.md
+!web/backend/**/*.md
+
+# ─── Docker auxiliares (no queremos recursión) ───────────────
+Dockerfile
+docker-compose*.yml
+docker/
+.dockerignore
+
+# ─── Logs sueltos en la raíz ─────────────────────────────────
+*.log
